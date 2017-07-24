@@ -23,20 +23,13 @@ public class GameManager : MonoBehaviour {
 	void Start() {
 		dadText = dadDialog.GetComponent<Text>();
 		playerText = playerDialog.GetComponent<Text>();
-		StartCoroutine( "Chat" );
+		StartCoroutine( "Conversation" );
 	}
 
 	void Update() {
 		dadDialog.transform.position = Camera.main.WorldToScreenPoint( dad.transform.position )
-									+ new Vector3( 0f, textHeight, 0f ); //to make text appear above dad's head
+									 + new Vector3( 0f, textHeight, 0f ); //to make text appear above dad's head
 	}
-
-//	void TurnToFacePlayer(GameObject go) {
-//		Vector3 lookDir = player.transform.position - go.transform.position;
-//		lookDir.y = 0f;
-//		go.transform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
-//	}
-
 
 	private bool DialogChoice() {
 		if ( Input.GetKeyDown( KeyCode.Alpha1 )
@@ -48,33 +41,24 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Chat() {
+	IEnumerator Conversation() {
 		playerText.text = "";
 		dadText.text = "";
 
-		yield return new WaitForSeconds( 1.5f );
-		dadText.text = "I AM MOVING ALONG SET WAYPOINTS";
+		for ( int i = 0; i < Dialog.dadDialog.Length; i++ ) {
 
-		yield return new WaitForSeconds( 3f );
-		dadText.text = "";
-		playerText.text = "[1] These are dialog options.\n" +
-						  "[2] Choose one.\n" +
-						  "[3] With the number keys.";
-		yield return new WaitUntil( DialogChoice );
-		playerText.text = "";
-		dadText.text = "THIS IS A TEST";
+			float textDelay = 2f + ( Dialog.dadDialog[i].Length * 0.036f ); //makes text delay vary based on length of dialog
 
-		yield return new WaitForSeconds( 3f );
-		dadText.text = "";
-		playerText.text = "[1] That's hella meta.\n" +
-						  "[2] Are you okay?\n" +
-						  "[3] THIS IS A TEST";
+			playerText.text = Dialog.playerDialog[i];
+			dadText.text = Dialog.dadDialog[i];
 
-		yield return new WaitUntil( DialogChoice );
-		playerText.text = "";
-		dadText.text = "The prototype is now over!";
+			// If dad has nothing to say, wait for player input:
+			if ( Dialog.dadDialog[i] == "" ) {
+				yield return new WaitUntil(DialogChoice);
+			} else {
+				yield return new WaitForSeconds( textDelay );
+			}
+		}
 
-		yield return new WaitForSeconds( 2.5f );
-		dadText.text = "";
 	}
 }
