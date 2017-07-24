@@ -4,28 +4,40 @@ using UnityEngine;
 
 public class WaypointMovement : MonoBehaviour {
 
-	public GameObject player;
-	public bool canWaitForPlayer;
-
+	/* Waypoint Movement Variables */
 	public Transform[] waypointList;
 	public int currentWaypoint = 0;
 	public float moveSpeed = 4f;
-	public float stopDistance; //the distance at which dad will stop to wait for the player
 
 	Transform targetWaypoint;
 
 
+	/* Player-Tracking Variables */
+	public GameObject player;
+	public float stopDistance; //the distance at which dad will stop to wait for the player
+	public bool canWaitForPlayer;
+	private bool willMove = true;
+
+	float distToPlayerSqr;
+	float stopDistSqr;
+
+
 	void Update() {
+		// Calculates squares 
+		distToPlayerSqr = (transform.position - player.transform.position).sqrMagnitude;
+		stopDistSqr = stopDistance * stopDistance; //uses squares to take up less processing power
+
 		// Check if this has somewere to walk:
 		if ( currentWaypoint < this.waypointList.Length ) {
 			if ( targetWaypoint == null ) {
 				targetWaypoint = waypointList[ currentWaypoint ];
 			}
 
-			// If player is too far away, this will stop and wait, else it'll move:
-			if ( ( transform.position - player.transform.position ).sqrMagnitude > ( stopDistance * stopDistance ) && canWaitForPlayer ) { //uses square roots to take up less processing power
-				TurnToFacePlayer();
-			} else {
+			if ( distToPlayerSqr > stopDistSqr && canWaitForPlayer ) {
+				WaitForPlayer();
+			}
+
+			if ( willMove ) {
 				Move();
 			}
 		}
@@ -44,9 +56,23 @@ public class WaypointMovement : MonoBehaviour {
 		}
 	}
 
-	void TurnToFacePlayer() {
+	void WaitForPlayer() {
+		willMove = false;
+
+		// Turns to face the player:
 		Vector3 lookDir = player.transform.position - transform.position;
 		lookDir.y = 0f;
-		transform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
+		transform.rotation = Quaternion.LookRotation( lookDir, Vector3.up );
+
+		Debug.Log( distToPlayerSqr );
+
+
+		/******* THIS IS THE CODE THAT ISN'T WORKING: *******/
+
+		// Will move again one player is close enough:
+		if ( distToPlayerSqr <= 100 ) {
+			print( "willMove = true" );
+			willMove = true;
+		}
 	}
 }
