@@ -178,7 +178,7 @@ public class Dialog : MonoBehaviour {
 
 		"...",
 
-		"So how’s it going at home? How’s your mother?",
+		"So... how’s it going at home? How’s your mother?",
 
 				"", //wait for player input
 

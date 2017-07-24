@@ -29,17 +29,23 @@ public class WaypointMovement : MonoBehaviour {
 
 		// Check if this has somewere to walk:
 		if ( currentWaypoint < this.waypointList.Length ) {
+
 			if ( targetWaypoint == null ) {
 				targetWaypoint = waypointList[ currentWaypoint ];
 			}
 
 			if ( distToPlayerSqr > stopDistSqr && canWaitForPlayer ) {
-				WaitForPlayer();
+				willMove = false;
+				TurnToFacePlayer();
 			}
 
+			// If this won't move, wait until the player is close, then move:
 			if ( willMove ) {
 				Move();
+			} else if ( distToPlayerSqr < stopDistSqr / 10 ) {
+				willMove = true;
 			}
+
 		}
 	}
 
@@ -56,23 +62,9 @@ public class WaypointMovement : MonoBehaviour {
 		}
 	}
 
-	void WaitForPlayer() {
-		willMove = false;
-
-		// Turns to face the player:
+	void TurnToFacePlayer() {
 		Vector3 lookDir = player.transform.position - transform.position;
 		lookDir.y = 0f;
 		transform.rotation = Quaternion.LookRotation( lookDir, Vector3.up );
-
-		Debug.Log( distToPlayerSqr );
-
-
-		/******* THIS IS THE CODE THAT ISN'T WORKING: *******/
-
-		// Will move again one player is close enough:
-		if ( distToPlayerSqr <= 100 ) {
-			print( "willMove = true" );
-			willMove = true;
-		}
 	}
 }
