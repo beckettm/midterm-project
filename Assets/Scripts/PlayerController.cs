@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public float moveSpeed = 3.4f;
-
 	Vector3 forward, right;
+
+	public AudioSource footsteps;
+
 
 	void Start() {
 		// Sets directional vectors to equate to orthographic camera vectors:
@@ -14,12 +16,18 @@ public class PlayerController : MonoBehaviour {
 		forward.y = 0;
 		forward = Vector3.Normalize( forward );
 		right = Quaternion.Euler( new Vector3( 0f, 90f, 0f )) * forward;
+
+		footsteps.Play();
+		footsteps.Pause();
 	}
 
 	void FixedUpdate() {
 		if ( !GameManager.isCutscene ) {
-			if( Input.GetAxis( "HorizontalKey" ) != 0 || Input.GetAxis( "VerticalKey" ) != 0) {
+			if ( Input.GetAxis( "HorizontalKey" ) != 0 || Input.GetAxis( "VerticalKey" ) != 0) {
 				Move();
+				footsteps.UnPause();
+			} else {
+				footsteps.Pause();
 			}
 		}
 	}

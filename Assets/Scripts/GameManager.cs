@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
 
 	public float textHeight = 2f; //used to set how far above the characters their dialog appears
 
+	public GameObject fade;
+
 
 	void Start() {
 		dadText = dadDialog.GetComponent<Text>();
@@ -48,7 +50,8 @@ public class GameManager : MonoBehaviour {
 		dadText.text = "";
 		int index = 0; //used to keep track of dialog
 
-		//yield return new WaitForSeconds(5f);
+		//TODO: Add intro cutscene
+		fade.SetActive( false );
 		isCutscene = false;
 
 		while ( index < Dialog.dadDialog.Length ) {
@@ -69,6 +72,10 @@ public class GameManager : MonoBehaviour {
 			if ( !WaypointMovement.isWaiting ) {
 				index++;
 			}
+		}
+
+		if ( index > Dialog.dadDialog.Length ) {
+			fade.SetActive( true );
 		}
 	}
 

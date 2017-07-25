@@ -11,6 +11,8 @@ public class WaypointMovement : MonoBehaviour {
 
 	Transform targetWaypoint;
 
+	public AudioSource footsteps;
+
 
 	/* Player-Tracking Variables */
 	public GameObject player;
@@ -20,7 +22,12 @@ public class WaypointMovement : MonoBehaviour {
 
 	float distToPlayerSqr;
 	float stopDistSqr;
-	 
+
+
+	void Start() {
+		footsteps.Play();
+		footsteps.Pause();
+	}
 
 	void FixedUpdate() {
 		// Prevents rotation around X or Z axes:
@@ -40,12 +47,14 @@ public class WaypointMovement : MonoBehaviour {
 			// Stops if too far from the player:
 			if ( distToPlayerSqr > stopDistSqr && canWaitForPlayer ) {
 				isWaiting = true;
+				footsteps.Pause();
 				TurnToFacePlayer();
 			}
 
 			// If this won't move, wait until the player is close, then move:
 			if ( !isWaiting ) {
 				Move();
+				footsteps.UnPause();
 			} else if ( distToPlayerSqr < stopDistSqr / 10 ) {
 				isWaiting = false;
 			}
