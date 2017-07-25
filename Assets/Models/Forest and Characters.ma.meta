@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: d3f6a37ef85bc43a48255b81a3ce0c97
+timeCreated: 1500973890
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body
+    100002: Body 1
+    100004: Bridge
+    100006: Bush
+    100008: Dad_NPC
+    100010: Eyes
+    100012: Eyes1
+    100014: //RootNode
+    100016: Grass2
+    100018: Grass3
+    100020: Grass4
+    100022: Grasses
+    100024: greasePencilFrontArtDrawPlane
+    100026: greasePencilFrontRenderPlane
+    100028: greasePencilPerspArtDrawPlane
+    100030: greasePencilPerspRenderPlane
+    100032: Head
+    100034: Head 1
+    100036: Head 2
+    100038: Head 3
+    100040: Leaves1
+    100042: Leaves2
+    100044: Leaves3
+    100046: Leaves4
+    100048: Log
+    100050: Player
+    100052: Rock
+    100054: Rock2
+    100056: Rock3
+    100058: Rock4
+    100060: Rocks
+    100062: Shrub
+    100064: Tree1
+    100066: Tree2
+    100068: Tree3
+    100070: Tree4
+    100072: Trees
+    100074: Trunk1
+    100076: Trunk2
+    100078: Trunk3
+    100080: Trunk4
+    400000: Body
+    400002: Body 1
+    400004: Bridge
+    400006: Bush
+    400008: Dad_NPC
+    400010: Eyes
+    400012: Eyes1
+    400014: //RootNode
+    400016: Grass2
+    400018: Grass3
+    400020: Grass4
+    400022: Grasses
+    400024: greasePencilFrontArtDrawPlane
+    400026: greasePencilFrontRenderPlane
+    400028: greasePencilPerspArtDrawPlane
+    400030: greasePencilPerspRenderPlane
+    400032: Head
+    400034: Head 1
+    400036: Head 2
+    400038: Head 3
+    400040: Leaves1
+    400042: Leaves2
+    400044: Leaves3
+    400046: Leaves4
+    400048: Log
+    400050: Player
+    400052: Rock
+    400054: Rock2
+    400056: Rock3
+    400058: Rock4
+    400060: Rocks
+    400062: Shrub
+    400064: Tree1
+    400066: Tree2
+    400068: Tree3
+    400070: Tree4
+    400072: Trees
+    400074: Trunk1
+    400076: Trunk2
+    400078: Trunk3
+    400080: Trunk4
+    2300000: Body
+    2300002: Body 1
+    2300004: Bridge
+    2300006: Bush
+    2300008: Eyes
+    2300010: Eyes1
+    2300012: Grass2
+    2300014: Grass3
+    2300016: Grass4
+    2300018: Head 2
+    2300020: Head 3
+    2300022: Leaves1
+    2300024: Leaves2
+    2300026: Leaves3
+    2300028: Leaves4
+    2300030: Log
+    2300032: Rock
+    2300034: Rock2
+    2300036: Rock3
+    2300038: Rock4
+    2300040: Shrub
+    2300042: Trunk1
+    2300044: Trunk2
+    2300046: Trunk3
+    2300048: Trunk4
+    3300000: Body
+    3300002: Body 1
+    3300004: Bridge
+    3300006: Bush
+    3300008: Eyes
+    3300010: Eyes1
+    3300012: Grass2
+    3300014: Grass3
+    3300016: Grass4
+    3300018: Head 2
+    3300020: Head 3
+    3300022: Leaves1
+    3300024: Leaves2
+    3300026: Leaves3
+    3300028: Leaves4
+    3300030: Log
+    3300032: Rock
+    3300034: Rock2
+    3300036: Rock3
+    3300038: Rock4
+    3300040: Shrub
+    3300042: Trunk1
+    3300044: Trunk2
+    3300046: Trunk3
+    3300048: Trunk4
+    4300000: Body
+    4300002: Head
+    4300004: Body
+    4300006: Head
+    4300008: Bridge
+    4300010: Rock
+    4300012: Rock4
+    4300014: Rock3
+    4300016: Rock2
+    4300018: Trunk1
+    4300020: Leaves1
+    4300022: Trunk2
+    4300024: Leaves2
+    4300026: Trunk3
+    4300028: Leaves3
+    4300030: Trunk4
+    4300032: Leaves4
+    4300034: Grass4
+    4300036: Grass2
+    4300038: Grass3
+    4300040: Log
+    4300042: Bush
+    4300044: Shrub
+    4300046: Eyes
+    4300048: Eyes1
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
