@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
 	Text playerText;
 	Text dadText;
 	
-	public static bool isIntro = true;
+	public static bool isCutscene = true;
 	public static bool canMove = false;
 	public static bool endGame = false;
 
@@ -26,12 +26,14 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine( "Conversation" );
 	}
 
-	void Update() {
+	void FixedUpdate() {
+		// Makes text appear above dad's head:
 		dadDialog.transform.position = Camera.main.WorldToScreenPoint( dad.transform.position )
-									 + new Vector3( 0f, textHeight, 0f ); //to make text appear above dad's head
+									 + new Vector3( 0f, textHeight, 0f );
 	}
 
 	private bool DialogChoice() {
+		// The choice is a LIE! >:D
 		if ( Input.GetKeyDown( KeyCode.Alpha1 )
 		  || Input.GetKeyDown( KeyCode.Alpha2 )
 		  || Input.GetKeyDown( KeyCode.Alpha3 )) {
@@ -44,21 +46,30 @@ public class GameManager : MonoBehaviour {
 	IEnumerator Conversation() {
 		playerText.text = "";
 		dadText.text = "";
+		int index = 0; //used to keep track of dialog
 
-		for ( int i = 0; i < Dialog.dadDialog.Length; i++ ) {
+		//yield return new WaitForSeconds(5f);
+		isCutscene = false;
 
-			float textDelay = 2f + ( Dialog.dadDialog[i].Length * 0.036f ); //makes text delay vary based on length of dialog
+		while ( index < Dialog.dadDialog.Length ) {
 
-			playerText.text = Dialog.playerDialog[i];
-			dadText.text = Dialog.dadDialog[i];
+			float textDelay = 2f + ( Dialog.dadDialog[index].Length * 0.036f ); //makes text delay vary based on length of dialog
+
+			playerText.text = Dialog.playerDialog[index];
+			dadText.text = Dialog.dadDialog[index];
 
 			// If dad has nothing to say, wait for player input:
-			if ( Dialog.dadDialog[i] == "" ) {
-				yield return new WaitUntil(DialogChoice);
+			if ( Dialog.dadDialog[index] == "" ) {
+				yield return new WaitUntil( DialogChoice );
 			} else {
 				yield return new WaitForSeconds( textDelay );
 			}
-		}
 
+			// Prevents dad from continuing to speak if player is too far away:
+			if ( !WaypointMovement.isWaiting ) {
+				index++;
+			}
+		}
 	}
+
 }

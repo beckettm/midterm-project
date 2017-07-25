@@ -7,7 +7,7 @@ public class WaypointMovement : MonoBehaviour {
 	/* Waypoint Movement Variables */
 	public Transform[] waypointList;
 	public int currentWaypoint = 0;
-	public float moveSpeed = 4f;
+	public float moveSpeed = 3.6f;
 
 	Transform targetWaypoint;
 
@@ -16,14 +16,17 @@ public class WaypointMovement : MonoBehaviour {
 	public GameObject player;
 	public float stopDistance; //the distance at which dad will stop to wait for the player
 	public bool canWaitForPlayer;
-	private bool willMove = true;
+	public static bool isWaiting = false;
 
 	float distToPlayerSqr;
 	float stopDistSqr;
+	 
 
+	void FixedUpdate() {
+		// Prevents rotation around X or Z axes:
+		transform.position.Set( transform.position.x, 0f, transform.position.z );
 
-	void Update() {
-		// Calculates squares 
+		// Calculates distance to player, squared:
 		distToPlayerSqr = (transform.position - player.transform.position).sqrMagnitude;
 		stopDistSqr = stopDistance * stopDistance; //uses squares to take up less processing power
 
@@ -34,24 +37,28 @@ public class WaypointMovement : MonoBehaviour {
 				targetWaypoint = waypointList[ currentWaypoint ];
 			}
 
+			// Stops if too far from the player:
 			if ( distToPlayerSqr > stopDistSqr && canWaitForPlayer ) {
-				willMove = false;
+				isWaiting = true;
 				TurnToFacePlayer();
 			}
 
 			// If this won't move, wait until the player is close, then move:
-			if ( willMove ) {
+			if ( !isWaiting ) {
 				Move();
 			} else if ( distToPlayerSqr < stopDistSqr / 10 ) {
-				willMove = true;
+				isWaiting = false;
 			}
-
+			
 		}
 	}
 
 	void Move() {
+		Vector3 waypointDir = targetWaypoint.position - transform.position;
+		//waypointDir.y = 0f;
+
 		// Rotate towards target waypoint:
-		transform.forward = Vector3.RotateTowards( transform.forward, targetWaypoint.position - transform.position, moveSpeed * Time.deltaTime, 0.0f );
+		transform.forward = Vector3.RotateTowards( transform.forward, waypointDir, moveSpeed * Time.deltaTime, 0.0f );
 
 		// Move towards target waypoint:
 		transform.position = Vector3.MoveTowards( transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime );
@@ -67,4 +74,5 @@ public class WaypointMovement : MonoBehaviour {
 		lookDir.y = 0f;
 		transform.rotation = Quaternion.LookRotation( lookDir, Vector3.up );
 	}
+
 }
